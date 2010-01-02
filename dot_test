@@ -1,0 +1,20 @@
+#!/usr/bin/perl6
+
+use v6;
+use Test;
+use Dot;
+
+my @tests = (
+    [ "graph { }",              "graph" ],
+    [ "GRAPH",              "GRAPH" ],
+    [ "Graph",              "Graph" ],
+    [ "digraph",            "digraph" ],
+    [ " graph ",            "graph with surrounding whitespace" ],
+    [ " digraph ",          "digraph with surrounding whitespace" ],
+    [ "strict graph",       "strict graph" ],
+    [ " strict graph ",     "strict graph with surrounding whitespace" ],
+);
+
+for @tests -> [$text,$message] {
+    ok Dot.parse($text), $message
+}
